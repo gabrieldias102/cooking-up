@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .fancy-link {
+    @apply relative font-medium text-lg transition-all duration-300 hover:cursor-pointer hover:text-xl;
+  }
+
+  .fancy-link::after {
+    content: "";
+    @apply absolute left-1/2 bottom-0 h-[2px] w-0 -translate-x-1/2 bg-current transition-all duration-300;
+  }
+
+  .fancy-link:hover::after {
+    @apply w-full;
+  }
+}
