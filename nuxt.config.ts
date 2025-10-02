@@ -6,5 +6,5 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   typescript: { strict: true, typeCheck: true },
-  app: { head: { title: "Receitas pelo que tenho" } },
+  app: { head: { title: "CookingUp" } },
 });
