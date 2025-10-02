@@ -1,17 +1,3 @@
-<script setup lang="ts">
-definePageMeta({ layout: "default" });
-import { usePantry } from "../../stores/pantry";
-import { useRecipes } from "../../stores/recipes";
-
-const pantry = usePantry();
-const recipes = useRecipes();
-
-function buscar() {
-  recipes.searchByPantry(pantry.items.map((i) => i.name));
-  navigateTo("/receitas");
-}
-</script>
-
 <template>
   <main class="rounded-2xl border bg-white p-6 shadow">
     <h2 class="text-xl font-semibold">
@@ -24,10 +10,7 @@ function buscar() {
         class="rounded-md bg-slate-800 px-4 py-2 text-white"
         >Abrir despensa</NuxtLink
       >
-      <button
-        @click="buscar"
-        class="rounded-md bg-emerald-600 px-4 py-2 text-white"
-      >
+      <button class="rounded-md bg-emerald-600 px-4 py-2 text-white">
         Ver receitas
       </button>
     </div>
