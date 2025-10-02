@@ -1,0 +1,57 @@
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Ingredient {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  recipes   RecipeIngredient[]
+}
+
+model Recipe {
+  id          String              @id @default(cuid())
+  title       String
+  slug        String              @unique
+  timeMin     Int?
+  difficulty  String?
+  imageUrl    String?
+  steps       Json                // [{order:1, text:"..."}]
+  ingredients RecipeIngredient[]
+  tags        RecipeTag[]
+}
+
+model Tag {
+  id      String   @id @default(cuid())
+  name    String   @unique
+  recipes RecipeTag[]
+}
+
+model RecipeTag {
+  id        String   @id @default(cuid())
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId  String
+  tag       Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tagId     String
+
+  @@unique([recipeId, tagId])
+}
+
+model RecipeIngredient {
+  id            String    @id @default(cuid())
+  recipeId      String
+  ingredientId  String
+  qty           String?   
+  optional      Boolean   @default(false)
+
+  recipe      Recipe     @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  ingredient  Ingredient @relation(fields: [ingredientId], references: [id], onDelete: Cascade)
+
+  @@unique([recipeId, ingredientId])
+}
