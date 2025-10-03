@@ -1,22 +1,23 @@
 <template>
   <nav
-    class="bg-primaryDark text-white px-8 py-6 flex items-center justify-between mx-48 rounded-b-xl"
+    class="bg-gradient-to-r from-primaryDark to-emerald-900 text-white px-8 py-6 flex items-center justify-between mx-48 rounded-b-xl shadow-lg"
   >
-    <div
-      href="/"
-      class="font-bold text-3xl hover:cursor-pointer transition-transform duration-300 hover:scale-110"
-    >
-      Cooking Up
-    </div>
+    <NuxtLink to="/">
+      <p
+        class="font-bold text-3xl hover:cursor-pointer transition-transform duration-300 hover:scale-110"
+      >
+        Cooking Up
+      </p>
+    </NuxtLink>
     <ul class="flex gap-4">
       <li>
-        <a href="/" class="fancy-link">Início</a>
+        <NuxtLink to="/" class="fancy-link">Início</NuxtLink>
       </li>
       <li>
-        <a href="/receitas" class="fancy-link">Receitas</a>
+        <NuxtLink to="/receitas" class="fancy-link">Receitas</NuxtLink>
       </li>
       <li>
-        <a href="/despensa" class="fancy-link">Despensa</a>
+        <NuxtLink to="/despensa" class="fancy-link">Despensa</NuxtLink>
       </li>
     </ul>
   </nav>
