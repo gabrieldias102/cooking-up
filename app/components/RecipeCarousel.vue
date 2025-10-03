@@ -1,18 +1,17 @@
 <template>
   <swiper
-    :slides-per-view="5"
+    :slides-per-view="slidesPerView"
+    :centered-slides="slidesPerView === 1"
+    :centered-slides-bounds="slidesPerView === 1"
     :pagination="{ clickable: true }"
-    :autoplay="{
-      delay: 3000,
-      disableOnInteraction: false,
-    }"
+    :autoplay="{ delay: 4000, disableOnInteraction: true }"
     :modules="modules"
     class="w-[75vw] my-8"
   >
     <swiper-slide
       v-for="(recipe, index) in recipes"
       :key="index"
-      class="flex justify-center"
+      class="!flex !justify-center items-center"
     >
       <RecipeCard
         :image-src="recipe.imageSrc"
@@ -26,68 +25,21 @@
   </swiper>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Pagination, Autoplay } from "swiper/modules";
-
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default {
-  components: { Swiper, SwiperSlide },
-  setup() {
-    const recipes = [
-      {
-        imageSrc: "https://picsum.photos/600/400?random=2",
-        title: "Salada Caesar com Frango Grelhado",
-        ownedIngredients: "7",
-        totalIngredients: "10",
-        time: "30 min",
-        missingItems: "Alface romana, Croutons",
-      },
-      {
-        imageSrc: "https://picsum.photos/600/400?random=3",
-        title: "Espaguete à Carbonara",
-        ownedIngredients: "6",
-        totalIngredients: "8",
-        time: "25 min",
-        missingItems: "Queijo Parmesão, Bacon",
-      },
-      {
-        imageSrc: "https://picsum.photos/600/400?random=4",
-        title: "Frango Grelhado com Legumes",
-        ownedIngredients: "5",
-        totalIngredients: "7",
-        time: "35 min",
-        missingItems: "Brócolis, Cenoura",
-      },
-      {
-        imageSrc: "https://picsum.photos/600/400?random=2",
-        title: "Salada Caesar com Frango Grelhado",
-        ownedIngredients: "7",
-        totalIngredients: "10",
-        time: "30 min",
-        missingItems: "Alface romana, Croutons",
-      },
-      {
-        imageSrc: "https://picsum.photos/600/400?random=3",
-        title: "Espaguete à Carbonara",
-        ownedIngredients: "6",
-        totalIngredients: "8",
-        time: "25 min",
-        missingItems: "Queijo Parmesão, Bacon",
-      },
-      {
-        imageSrc: "https://picsum.photos/600/400?random=4",
-        title: "Frango Grelhado com Legumes",
-        ownedIngredients: "5",
-        totalIngredients: "7",
-        time: "35 min",
-        missingItems: "Brócolis, Cenoura",
-      },
-    ];
+import recipes from "~/mocks/recipes";
 
-    return { modules: [Pagination, Autoplay], recipes };
-  },
-};
+const modules = [Pagination, Autoplay];
+
+const slidesPerView = ref(5);
+
+onMounted(() => {
+  const w = window.innerWidth;
+  slidesPerView.value = w < 640 ? 1 : w < 1024 ? 3 : 5;
+});
 </script>
