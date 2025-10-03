@@ -1,18 +1,8 @@
 <template>
   <main class="rounded-2xl border bg-white p-6 shadow">
-    <h2 class="text-xl font-semibold">
-      Comece adicionando alguns ingredientes
-    </h2>
-    <p class="text-slate-600">Ex.: ovo, leite, tomate, farinha…</p>
-    <div class="mt-4 flex gap-2">
-      <NuxtLink
-        to="/despensa"
-        class="rounded-md bg-slate-800 px-4 py-2 text-white"
-        >Abrir despensa</NuxtLink
-      >
-      <button class="rounded-md bg-emerald-600 px-4 py-2 text-white">
-        Ver receitas
-      </button>
+    <h2 class="text-3xl font-semibold">Receitas Populares</h2>
+    <div class="mt-2 items-center">
+      <RecipeCarousel />
     </div>
   </main>
 </template>
