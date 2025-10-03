@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen bg-gray-100">
     <Navbar />
     <main class="flex flex-row my-12 gap-4">
       <Sidebar class="hidden md:block w-1/6" />

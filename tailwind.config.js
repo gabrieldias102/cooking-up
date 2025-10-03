@@ -15,6 +15,7 @@ module.exports = {
         text: "#2E3E5C",
         textClear: "#9FA5C0",
         form: "#F4F5F7",
+        important: "#FCD34D",
       },
     },
   },
